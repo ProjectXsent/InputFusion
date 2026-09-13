@@ -9,6 +9,7 @@ found in the LICENSE file in the root directory of this source tree.
 #include "util.h"
 #include "flags.h"
 #include "version.h"
+#include "native_input_block.h"
 
 std::atomic<bool> SDL_Event_Loop(true);
 HANDLE SDL_Init_Wait = nullptr;
@@ -275,6 +276,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
     switch (ul_reason_for_call)
     {
         case DLL_PROCESS_ATTACH: {
+            NativeInputBlock_Install();
             DisableThreadLibraryCalls(hModule);
             SDL_Init_Wait = CreateEvent(nullptr, TRUE, FALSE, nullptr);
             SDL_Quit_Wait = CreateEvent(nullptr, TRUE, FALSE, nullptr);
