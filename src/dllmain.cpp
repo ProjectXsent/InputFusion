@@ -276,7 +276,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
     switch (ul_reason_for_call)
     {
         case DLL_PROCESS_ATTACH: {
-            NativeInputBlock_Install();
+            //NativeInputBlock_Install();
             DisableThreadLibraryCalls(hModule);
             SDL_Init_Wait = CreateEvent(nullptr, TRUE, FALSE, nullptr);
             SDL_Quit_Wait = CreateEvent(nullptr, TRUE, FALSE, nullptr);
