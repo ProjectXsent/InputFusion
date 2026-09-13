@@ -6,6 +6,7 @@ found in the LICENSE file in the root directory of this source tree.
 
 #include "xinput.h"
 #include "../flags.h"
+#include "../native_input_block.h"
 
 extern HANDLE SDL_Init_Wait;
 
@@ -53,6 +54,7 @@ extern "C" {
     }
 
     DWORD WINAPI XInputGetStateEx(DWORD dwUserIndex, XINPUT_STATE* pState) {
+        NativeInputBlock_Install();
         SDL_Log("XInputGetStateEx(%u, %p)", dwUserIndex, pState);
 
         static std::atomic<DWORD> dwPacketNumber[XUSER_MAX_COUNT] = {};
