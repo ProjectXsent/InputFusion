@@ -16,7 +16,7 @@ HANDLE SDL_Init_Wait = nullptr;
 HANDLE SDL_Quit_Wait = nullptr;
 
 void setDefaultGamepadAPIs() {
-    SDL_SetHint(SDL_HINT_JOYSTICK_DIRECTINPUT, "0");    // Dinput8
+    SDL_SetHint(SDL_HINT_JOYSTICK_DIRECTINPUT, "1");    // Dinput8
     SDL_SetHint(SDL_HINT_XINPUT_ENABLED, "0");          // Xinput      
     SDL_SetHint(SDL_HINT_JOYSTICK_WGI, "1");            // Windows.Gaming.Input (WinRT)
     SDL_SetHint(SDL_HINT_JOYSTICK_GAMEINPUT, "1");      // GameInput
@@ -276,7 +276,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
     switch (ul_reason_for_call)
     {
         case DLL_PROCESS_ATTACH: {
-            //NativeInputBlock_Install();
+            NativeInputBlock_Install();
             DisableThreadLibraryCalls(hModule);
             SDL_Init_Wait = CreateEvent(nullptr, TRUE, FALSE, nullptr);
             SDL_Quit_Wait = CreateEvent(nullptr, TRUE, FALSE, nullptr);
